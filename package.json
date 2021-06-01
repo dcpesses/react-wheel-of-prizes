@@ -1,6 +1,6 @@
 {
   "name": "react-wheel-of-prizes",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "It is a wheel of prizes game build using reactjs",
   "author": "shekharramola",
   "license": "GNU General Public License v3.0",
@@ -21,7 +21,8 @@
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "prepare": "run-s build"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -48,6 +49,7 @@
     "react-scripts": "^3.4.1"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ]
 }
