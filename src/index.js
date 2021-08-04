@@ -4,6 +4,7 @@ const WheelComponent = ({
   segments,
   segColors,
   winningSegment,
+  onStart = ()=>{},
   onFinished,
   primaryColor,
   contrastColor,
@@ -63,7 +64,8 @@ const WheelComponent = ({
       frames = 0
       timerHandle = setInterval(onTimerTick, timerDelay)
     }
-  }
+    onStart();
+  };
   const onTimerTick = () => {
     frames++
     draw()
