@@ -15,7 +15,8 @@ const WheelComponent = ({
   downDuration = 1000,
   fontFamily = 'proxima-nova',
   wheelHeight = 720,
-  wheelWidth = 600
+  wheelWidth = 600,
+  enableScrollTop = true
 }) => {
   let currentSegment = ''
   let isStarted = false
@@ -34,10 +35,12 @@ const WheelComponent = ({
   const centerY = Math.round(wheelHeight/2.5);
   useEffect(() => {
     wheelInit()
-    setTimeout(() => {
-      window.scrollTo(0, 1)
-    }, 0)
   }, [])
+    if (enableScrollTop) {
+      setTimeout(() => {
+        window.scrollTo(0, 1);
+      }, 0)
+    }
   const wheelInit = () => {
     initCanvas()
     wheelDraw()
