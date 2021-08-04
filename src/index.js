@@ -12,7 +12,9 @@ const WheelComponent = ({
   size = 290,
   upDuration = 100,
   downDuration = 1000,
-  fontFamily = 'proxima-nova'
+  fontFamily = 'proxima-nova',
+  wheelHeight = 720,
+  wheelWidth = 600
 }) => {
   let currentSegment = ''
   let isStarted = false
@@ -27,8 +29,8 @@ const WheelComponent = ({
   const downTime = segments.length * downDuration
   let spinStart = 0
   let frames = 0
-  const centerX = 300
-  const centerY = 300
+  const centerX = Math.round(wheelWidth/2);
+  const centerY = Math.round(wheelHeight/2.5);
   useEffect(() => {
     wheelInit()
     setTimeout(() => {
@@ -44,10 +46,10 @@ const WheelComponent = ({
     let canvas = document.getElementById('canvas')
     if (navigator.appVersion.indexOf('MSIE') !== -1) {
       canvas = document.createElement('canvas')
-      canvas.setAttribute('width', 1000)
-      canvas.setAttribute('height', 600)
       canvas.setAttribute('id', 'canvas')
       document.getElementById('wheel').appendChild(canvas)
+      canvas.setAttribute('width', wheelWidth);
+      canvas.setAttribute('height', wheelHeight);
     }
     canvas.addEventListener('click', spin, false)
     canvasContext = canvas.getContext('2d')
@@ -200,14 +202,14 @@ const WheelComponent = ({
   }
   const clear = () => {
     const ctx = canvasContext
-    ctx.clearRect(0, 0, 1000, 800)
+    ctx.clearRect(0, 0, wheelWidth, wheelHeight);
   }
   return (
     <div id='wheel'>
       <canvas
         id='canvas'
-        width='1000'
-        height='800'
+        width={wheelWidth}
+        height={wheelHeight}
         style={{
           pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto'
         }}
