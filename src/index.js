@@ -55,7 +55,6 @@ const WheelComponent = ({
       canvas.setAttribute('width', wheelWidth);
       canvas.setAttribute('height', wheelHeight);
     }
-    canvas.addEventListener('click', spin, false)
     canvasContext = canvas.getContext('2d')
   }
   const spin = () => {
@@ -216,7 +215,7 @@ const WheelComponent = ({
     ctx.clearRect(0, 0, wheelWidth, wheelHeight);
   }
   return (
-    <div id='wheel'>
+    <div id="wheel" style={{position: 'relative'}}>
       <canvas
         id='canvas'
         width={wheelWidth}
@@ -225,6 +224,16 @@ const WheelComponent = ({
           pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto'
         }}
       />
+      <div onClick={()=>spin()} style={{
+        borderRadius: '50%',
+        cursor: 'pointer',
+        position: 'absolute',
+        height: `${size * 2}px`,
+        width: `${size * 2}px`,
+        left: Math.round(wheelWidth/2 - size),
+        right: Math.round(wheelWidth/2 - size),
+        top: Math.round(wheelHeight/2.5 - size),
+      }} />
     </div>
   )
 }
