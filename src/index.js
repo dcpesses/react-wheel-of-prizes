@@ -16,6 +16,7 @@ const WheelComponent = ({
   fontFamily = 'proxima-nova',
   wheelHeight = 720,
   wheelWidth = 600,
+  multilineDelimiter = null,
   enableScrollTop = true
 }) => {
   let currentSegment = ''
@@ -139,6 +140,13 @@ const WheelComponent = ({
     ctx.fillStyle = contrastColor || 'white'
     ctx.font = 'bold 1em ' + fontFamily
     ctx.fillText(value.substr(0, 21), size / 2 + 20, 0)
+    if (multilineDelimiter && value.indexOf(multilineDelimiter) !== -1) {
+      ctx.fillText(value.substr(0, value.indexOf(multilineDelimiter)), size / 2 + 20, -3);
+      ctx.font = '0.75em ' + fontFamily;
+      ctx.fillText(value.substr(value.indexOf(multilineDelimiter) + 1, 21), size / 2 + 20, 11);
+    } else {
+      ctx.fillText(value.substr(0, 21), size / 2 + 20, 0)
+    }
     ctx.restore()
   }
 
