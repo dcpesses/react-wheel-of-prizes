@@ -19,6 +19,7 @@ const WheelComponent = ({
   enableScrollTop = true
 }) => {
   let currentSegment = ''
+  let currentSegmentLabel = ''
   let isStarted = false
   const [isFinished, setFinished] = useState(false)
   let timerHandle = 0
@@ -203,7 +204,8 @@ const WheelComponent = ({
     ctx.fillStyle = primaryColor || 'black'
     ctx.font = 'bold 1.5em ' + fontFamily
     currentSegment = segments[i]
-    isStarted && ctx.fillText(currentSegment, centerX + 10, centerY + size + 50)
+    currentSegmentLabel = currentSegment || ''
+    isStarted && ctx.fillText(currentSegmentLabel, centerX + 10, centerY + size + 50)
   }
   const clear = () => {
     const ctx = canvasContext
