@@ -141,7 +141,6 @@ const WheelComponent = ({
     ctx.rotate((lastAngle + angle) / 2)
     ctx.fillStyle = contrastColor || 'white'
     ctx.font = 'bold 1em ' + fontFamily
-    ctx.fillText(value.substr(0, 21), size / 2 + 20, 0)
     if (multilineDelimiter && value.indexOf(multilineDelimiter) !== -1) {
       ctx.fillText(value.substr(0, value.indexOf(multilineDelimiter)), size / 2 + 20, -3);
       ctx.font = '0.75em ' + fontFamily;
