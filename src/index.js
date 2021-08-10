@@ -5,6 +5,7 @@ const WheelComponent = ({
   segColors,
   winningSegment,
   onStart = ()=>{},
+  onSpinProgress,
   onFinished,
   primaryColor,
   contrastColor,
@@ -108,6 +109,7 @@ const WheelComponent = ({
       timerHandle = 0
       angleDelta = 0
     }
+    onSpinProgress && onSpinProgress({finished, progress, frames})
   }
 
   const wheelDraw = () => {
