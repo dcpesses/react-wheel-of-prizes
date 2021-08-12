@@ -146,11 +146,11 @@ const WheelComponent = ({
     ctx.fillStyle = contrastColor || 'white'
     ctx.font = 'bold 1em ' + fontFamily
     if (multilineDelimiter && value.indexOf(multilineDelimiter) !== -1) {
-      ctx.fillText(value.substr(0, value.indexOf(multilineDelimiter)), size / 2 + 20, -3);
+      ctx.fillText(value.substr(0, value.indexOf(multilineDelimiter)), size / 2 + 25, -3);
       ctx.font = '0.75em ' + fontFamily;
-      ctx.fillText(value.substr(value.indexOf(multilineDelimiter) + 1, 21), size / 2 + 20, 11);
+      ctx.fillText(value.substr(value.indexOf(multilineDelimiter) + 1, 21), size / 2 + 25, 11);
     } else {
-      ctx.fillText(value.substr(0, 21), size / 2 + 20, 0)
+      ctx.fillText(value.substr(0, 21), size / 2 + 25, 0)
     }
     ctx.restore()
   }
@@ -183,7 +183,7 @@ const WheelComponent = ({
     ctx.fillStyle = contrastColor || 'white'
     ctx.textAlign = 'center'
     ctx.fillText(buttonText || 'Spin', centerX, centerY + 3)
-    ctx.stroke()
+    ctx.stroke(spinButton)
 
     // Draw outer circle
     ctx.beginPath()
