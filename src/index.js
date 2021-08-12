@@ -36,6 +36,7 @@ const WheelComponent = ({
   let frames = 0
   const centerX = Math.round(wheelWidth/2);
   const centerY = Math.round(wheelHeight/2.5);
+  const spinButton = new Path2D();
   useEffect(() => {
     wheelInit()
   }, [])
@@ -61,7 +62,10 @@ const WheelComponent = ({
     canvas.addEventListener('click', spin, false)
     canvasContext = canvas.getContext('2d')
   }
-  const spin = () => {
+  const spin = (event) => {
+    if (!canvasContext.isPointInPath(spinButton, event.offsetX, event.offsetY)) {
+      return;
+    }
     isStarted = true
     if (timerHandle === 0) {
       spinStart = new Date().getTime()
@@ -70,7 +74,7 @@ const WheelComponent = ({
       frames = 0
       timerHandle = setInterval(onTimerTick, timerDelay)
     }
-    onStart();
+    onStart && onStart(event);
   };
   const onTimerTick = () => {
     frames++
@@ -169,12 +173,12 @@ const WheelComponent = ({
 
     // Draw a center circle
     ctx.beginPath()
-    ctx.arc(centerX, centerY, 50, 0, PI2, false)
+    spinButton.arc(centerX, centerY, 50, 0, PI2, false)
     ctx.closePath()
     ctx.fillStyle = primaryColor || 'black'
     ctx.lineWidth = 10
     ctx.strokeStyle = contrastColor || 'white'
-    ctx.fill()
+    ctx.fill(spinButton)
     ctx.font = 'bold 1em ' + fontFamily
     ctx.fillStyle = contrastColor || 'white'
     ctx.textAlign = 'center'
